@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  /* Preview Section */
+  .preview {
+    width: 50%;
+    background: linear-gradient(135deg, #007bff, #00bfff);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .preview h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  .preview p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  /* Form Section */
+  .form-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  form {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-size: 2em;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+    }
+
+    .preview,
+    .form-container {
+      width: 100%;
+      padding: 20px;
+    }
+
+    .preview {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .form-container {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+  }
