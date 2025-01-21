@@ -71,28 +71,32 @@ const login = async (req, res, next) => {
       let errorField = "";
       if (!email) errorField = "email";
       if (!password) errorField = "password";
-      return res.redirect(`/login?error=Email and password are required&email=${email || ""}&errorField=${errorField}`);
+      return res.redirect(`/login?error=Email and password are required&email=${email || ""}&password=${password || ""}&errorField=${errorField}`);
     }
 
     // Authenticate user
     passport.authenticate("local", (err, user, info) => {
       if (err) {
         // Handle unexpected errors
-        return res.redirect(`/login?error=An error occurred during login&email=${email}`);
+        return res.redirect(`/login?error=An error occurred during login&email=${email}&password=${password}`);
       }
       if (!user) {
         // Handle invalid credentials
-        return res.redirect(`/login?error=${info.message || "Invalid email or password"}&email=${email}&errorField=email`);
+        let errorField = "email"; // Default to email field for invalid credentials
+        if (info && info.message === "Incorrect password.") {
+          errorField = "password"; // Highlight password field if the password is incorrect
+        }
+        return res.redirect(`/login?error=${info.message || "Invalid email or password"}&email=${email}&password=${password}&errorField=${errorField}`);
       }
 
       // Log in the user
       req.logIn(user, (err) => {
         if (err) {
           // Handle login errors
-          return res.redirect(`/login?error=An error occurred during login&email=${email}`);
+          return res.redirect(`/login?error=An error occurred during login&email=${email}&password=${password}`);
         }
         // Redirect based on user role
-        if (user.role === 'user') {
+        if (user.role === "user") {
           return res.redirect("/home");
         } else {
           return res.redirect("/dashboard");

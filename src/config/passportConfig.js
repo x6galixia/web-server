@@ -6,38 +6,40 @@ const serverPool = require('../config/db'); // Database connection pool
 
 // Configure the local strategy for use by Passport
 // The local strategy authenticates users using a username and password
-passport.use(new LocalStrategy(
-    {
-        usernameField: 'email', // Use 'email' as the username field (instead of the default 'username')
-        passwordField: 'password' // Use 'password' as the password field
-    },
-    async (email, password, done) => {
+passport.use(
+    new LocalStrategy(
+      {
+        usernameField: "email", // Use 'email' as the username field
+        passwordField: "password", // Use 'password' as the password field
+      },
+      async (email, password, done) => {
         try {
-            // Query the database to find the user by their email
-            const userQuery = await serverPool.query('SELECT * FROM users WHERE email = $1', [email]);
-            const user = userQuery.rows[0]; // Extract the user object from the query result
-
-            // If no user is found with the provided email, return an error
-            if (!user) {
-                return done(null, false, { message: 'Incorrect email or password.' });
-            }
-
-            // Compare the provided password with the hashed password stored in the database
-            const isValidPassword = await bcrypt.compare(password, user.password);
-
-            // If the password is valid, return the user object
-            if (isValidPassword) {
-                return done(null, user);
-            } else {
-                // If the password is invalid, return an error
-                return done(null, false, { message: 'Incorrect email or password.' });
-            }
+          // Query the database to find the user by their email
+          const userQuery = await serverPool.query("SELECT * FROM users WHERE email = $1", [email]);
+          const user = userQuery.rows[0]; // Extract the user object from the query result
+  
+          // If no user is found with the provided email, return an error
+          if (!user) {
+            return done(null, false, { message: "Email is not registered." }); // Specific error for invalid email
+          }
+  
+          // Compare the provided password with the hashed password stored in the database
+          const isValidPassword = await bcrypt.compare(password, user.password);
+  
+          // If the password is valid, return the user object
+          if (isValidPassword) {
+            return done(null, user);
+          } else {
+            // If the password is invalid, return a specific error
+            return done(null, false, { message: "Incorrect password." }); // Specific error for incorrect password
+          }
         } catch (err) {
-            // If an error occurs during the process, pass it to the `done` callback
-            return done(err);
+          // If an error occurs during the process, pass it to the `done` callback
+          return done(err);
         }
-    }
-));
+      }
+    )
+  );
 
 // Serialize the user object to store in the session
 // This function determines what data from the user object should be stored in the session
