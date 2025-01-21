@@ -231,3 +231,14 @@ a:hover {
     transform: translateY(0);
   }
 }
+
+/* Error Input Styling */
+.error-input {
+  border-color: #ff0000; /* Red border */
+  color: #ff0000; /* Red text */
+}
+
+.error-input:focus {
+  border-color: #ff0000; /* Red border on focus */
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3); /* Red shadow on focus */
+}

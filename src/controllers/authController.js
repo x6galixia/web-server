@@ -4,16 +4,32 @@ const { ConflictError } = require("../utils/errors");
 const serverPool = require("../config/db");
 
 const signup = async (req, res, next) => {
-  const { name, email, username, password, role } = req.body;
+  const { name, email, username, password, confirmPassword, role } = req.body;
 
   try {
+    // Check if any required field is missing
+    if (!name || !email || !username || !password || !confirmPassword) {
+      let errorField = "";
+      if (!name) errorField = "name";
+      else if (!email) errorField = "email";
+      else if (!username) errorField = "username";
+      else if (!password) errorField = "password";
+      else if (!confirmPassword) errorField = "confirmPassword";
+      return res.redirect(`/signup?error=All fields are required&name=${name || ""}&email=${email || ""}&username=${username || ""}&errorField=${errorField}`);
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      return res.redirect(`/signup?error=Passwords do not match&name=${name}&email=${email}&username=${username}&errorField=confirmPassword`);
+    }
+
     // Check if email already exists
     const emailCheck = await serverPool.query(
       "SELECT * FROM users WHERE email = $1",
       [email]
     );
     if (emailCheck.rows.length > 0) {
-      return res.redirect("/signup?error=Email already exists");
+      return res.redirect(`/signup?error=Email already exists&name=${name}&email=${email}&username=${username}&errorField=email`);
     }
 
     // Check if username already exists
@@ -22,7 +38,7 @@ const signup = async (req, res, next) => {
       [username]
     );
     if (usernameCheck.rows.length > 0) {
-      return res.redirect("/signup?error=Username already exists");
+      return res.redirect(`/signup?error=Username already exists&name=${name}&email=${email}&username=${username}&errorField=username`);
     }
 
     // Hash the password
@@ -42,7 +58,7 @@ const signup = async (req, res, next) => {
     res.redirect('/login?success=Account created successfully. Please log in.');
   } catch (err) {
     // Handle unexpected errors
-    res.redirect("/signup?error=An error occurred during signup");
+    res.redirect(`/signup?error=An error occurred during signup&name=${name}&email=${email}&username=${username}`);
   }
 };
 
@@ -50,25 +66,30 @@ const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
+    // Check if email or password is missing
     if (!email || !password) {
-      // Redirect with an error message if email or password is missing
-      return res.redirect("/login?error=Email and password are required");
+      let errorField = "";
+      if (!email) errorField = "email";
+      if (!password) errorField = "password";
+      return res.redirect(`/login?error=Email and password are required&email=${email || ""}&errorField=${errorField}`);
     }
 
+    // Authenticate user
     passport.authenticate("local", (err, user, info) => {
       if (err) {
-        // Redirect with a generic error message
-        return res.redirect("/login?error=An error occurred during login");
+        // Handle unexpected errors
+        return res.redirect(`/login?error=An error occurred during login&email=${email}`);
       }
       if (!user) {
-        // Redirect with the error message from Passport (info.message)
-        return res.redirect(`/login?error=${info.message || "Invalid email or password"}`);
+        // Handle invalid credentials
+        return res.redirect(`/login?error=${info.message || "Invalid email or password"}&email=${email}&errorField=email`);
       }
 
+      // Log in the user
       req.logIn(user, (err) => {
         if (err) {
-          // Redirect with a generic error message
-          return res.redirect("/login?error=An error occurred during login");
+          // Handle login errors
+          return res.redirect(`/login?error=An error occurred during login&email=${email}`);
         }
         // Redirect based on user role
         if (user.role === 'user') {
