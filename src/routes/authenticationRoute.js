@@ -23,10 +23,11 @@ router.get("/login", ensureNotAuthenticated, (req, res) => {
   const error = req.query.error;
   const success = req.query.success;
   const email = req.query.email;
+  const password = req.query.password;
   const errorField = req.query.errorField;
 
   try {
-    res.render("pages/login-page", { title: "Login page", error, errorField, success, email });
+    res.render("pages/login-page", { title: "Login page", error, errorField, success, email, password });
   } catch (err) {
     console.error("Error rendering login page:", err);
     res.status(500).send("Internal Server Error");
