@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get( "/home", ensureAuthenticated, ensureAdminOrUser, (req, res, next) => {
     try {
-      res.render("pages/home-page", { title: "Home page" });
+      res.render("pages/home-page", { title: "Home page", user: req.user });
     } catch (err) {
       console.error("Error rendering home page:", err);
       next(err);

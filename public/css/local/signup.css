@@ -1,158 +1,233 @@
+/* Add animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes formSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #f4f4f9, #e0e7ff);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden; /* Prevent scroll during animations */
+}
 
+.container {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 20px;
+  backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  overflow: hidden;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Preview Section */
+.preview {
+  width: 50%;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.8), rgba(0, 191, 255, 0.8)); /* Semi-transparent gradient */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  animation: slideIn 1s ease-in-out;
+}
+
+.preview h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.preview p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+/* Form Section */
+.form-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  animation: formSlideIn 1s ease-in-out;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent form background */
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px); /* Blur effect for glassmorphism */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007bff;
+  font-size: 2em;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%; /* Ensure input group takes full width */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333; /* Darker text for better visibility */
+  font-weight: bold;
+}
+
+input {
+  width: calc(100% - 24px); /* Adjust width to account for padding */
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Slightly darker border for visibility */
+  border-radius: 6px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.8); /* Less transparent background for inputs */
+  color: #333;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s ease-in-out;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  transform: scale(1.03); /* Subtle scaling effect */
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px); /* Lift button on hover */
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
   .container {
-    display: flex;
-    width: 90%;
-    max-width: 1200px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-
-  /* Preview Section */
-  .preview {
-    width: 50%;
-    background: linear-gradient(135deg, #007bff, #00bfff);
-    color: white;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    text-align: center;
+    width: 100%;
+    height: auto;
   }
 
-  .preview h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-  }
-
-  .preview p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    max-width: 400px;
-  }
-
-  /* Form Section */
+  .preview,
   .form-container {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-  }
-
-  form {
     width: 100%;
-    max-width: 400px;
+    padding: 20px;
   }
 
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #007bff;
-    font-size: 2em;
+  .preview {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
-  .form-group {
-    margin-bottom: 20px;
+  .form-container {
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
+}
 
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
+/* Message Styling */
+.message {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
+}
+
+/* Error Message Styling */
+.error-message {
+  background-color: #ffebee; /* Light red background */
+  color: #c62828; /* Dark red text */
+  border: 1px solid #ef9a9a; /* Light red border */
+}
+
+/* Success Message Styling */
+.success-message {
+  background-color: #e8f5e9; /* Light green background */
+  color: #2e7d32; /* Dark green text */
+  border: 1px solid #a5d6a7; /* Light green border */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-
-  input,
-  select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  input:focus,
-  select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-  }
-
-  .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
-  p {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #666;
-  }
-
-  a {
-    color: #007bff;
-    text-decoration: none;
-    transition: text-decoration 0.3s;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-    }
-
-    .preview,
-    .form-container {
-      width: 100%;
-      padding: 20px;
-    }
-
-    .preview {
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
-    .form-container {
-      padding-top: 20px;
-      padding-bottom: 40px;
-    }
-  }
+}
