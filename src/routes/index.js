@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.use("/", require("./authenticationRoute"));
+router.use("/", require("./authRoute"));
 router.use("/", require("./homeRoute"));
 router.use("/", require("./adminRoute"));
 
