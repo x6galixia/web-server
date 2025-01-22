@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const { ConflictError } = require("../utils/errors");
 const serverPool = require("../config/db");
 
 const signup = async (req, res, next) => {
