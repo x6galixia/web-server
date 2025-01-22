@@ -8,10 +8,7 @@ if (errorMessage) {
             errorMessage.remove(); // Remove from DOM after fade out
             // Update the URL to /home
             const baseUrl = window.location.origin + '/home';
-            console.log('Updating URL to:', baseUrl); // Debugging
             history.replaceState(null, '', baseUrl);
-            // Verify the URL after update
-            console.log('Updated URL:', window.location.href); // Debugging
         }, 500); // Wait for the fade-out transition to complete
     };
 

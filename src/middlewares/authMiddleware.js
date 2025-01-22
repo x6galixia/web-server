@@ -25,9 +25,9 @@ function ensureNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         // If the user is authenticated, redirect them to the home page (or another route).
         if (req.user.role === 'admin') {
-            return res.redirect('/dashboard');
+            return res.redirect('/dashboard?error=You are already authenticated');
         } else {
-            return res.redirect('/home');
+            return res.redirect('/home?error=You are already authenticated');
         }
     }
     // If the user is not authenticated, call the `next()` function to proceed to the next middleware or route handler.
