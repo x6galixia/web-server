@@ -1,80 +1,76 @@
 /* Header Styling */
-body {
-    margin: 0px;
-    padding: 0px;
+header {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+  color: white;
+  padding: 20px; /* Increased padding for better spacing */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeInDown 0.5s ease-in-out;
 }
 
-/* Header Styling */
-header {
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
-    color: white;
-    padding: 15px 20px; /* 20px padding from the sides */
-    display: flex;
-    justify-content: flex-start; /* Align content to the left */
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .header-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Space between user name and logout button */
-  }
-  
-  .user-info {
-    font-size: 18px;
-    font-weight: 500;
-  }
-  
-  .welcome-text {
-    color: rgba(255, 255, 255, 0.9);
-  }
-  
-  .username {
-    font-weight: 700;
-    color: #fff;
-  }
-  
-  .logout-btn {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
-    padding: 8px 20px;
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-  
-  .logout-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly darker on hover */
-    border-color: rgba(255, 255, 255, 0.5); /* Slightly darker border on hover */
-    transform: translateY(-2px); /* Lift button on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-  }
-  
-  /* Animation for header */
-  @keyframes fadeInDown {
-    from {
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Space between left and right sections */
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between user name and logout button */
+}
+
+.user-info {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.welcome-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+}
+
+.username {
+  font-weight: 700;
+  color: #fff;
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)); /* Gradient for button */
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+  padding: 10px 25px; /* Adjusted padding for balance */
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4)); /* Enhanced hover gradient */
+  border-color: rgba(255, 255, 255, 0.5); /* Slightly darker border on hover */
+  transform: translateY(-2px); /* Lift button on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Animation for header */
+@keyframes fadeInDown {
+  from {
       opacity: 0;
       transform: translateY(-20px);
-    }
-    to {
+  }
+  to {
       opacity: 1;
       transform: translateY(0);
-    }
   }
-  
-  header {
-    animation: fadeInDown 0.5s ease-in-out;
-  }
+}
