@@ -8,22 +8,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="/images/favicon/site.webmanifest">
 
-    <link rel="stylesheet" href="../../css/global/header.css" />
-    <link rel="stylesheet" href="../../css/global/error.css" />
     <link rel="stylesheet" href="../../css/global/page.css" />
+    <link rel="stylesheet" href="../../css/local/404.css" />
     <title><%= title %></title>
 </head>
 <body>
-    <%- include('../partials/header.ejs', { user: user }) %>
-    <h1>Home</h1>
-
-    <% if (typeof error !== 'undefined') { %>
-        <div class="message error-message" id="errorMessage">
-          <%= error %>
-          <button class="close-btn" id="closeButton">&times;</button>
-        </div>
-    <% } %>
-
-    <script nonce="<%= nonce %>" src="../../js/global/error.js"></script>
+    <div class="error-container">
+        <img src="../../images/local/error-404.png" alt="Error Icon" class="error-icon">
+        <h1>404 NOT FOUND</h1>
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        <a href="/home" class="home">Go Back Home</a>
+    </div>
 </body>
 </html>

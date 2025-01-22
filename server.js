@@ -16,6 +16,7 @@ const session = require("express-session");
 const passport = require("./src/config/passportConfig");
 const validateEnvVars = require("./src/utils/envValidator");
 const { NotFoundError } = require("./src/utils/errors");
+const notFoundMiddleware = require('./src/middlewares/errorMiddleware');
 
 require("dotenv").config();
 
@@ -138,6 +139,8 @@ app.get("/server", (req, res, next) => {
 app.use((req, res, next) => {
   next(new NotFoundError("The requested URL was not found on this server."));
 });
+
+app.use(notFoundMiddleware);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
