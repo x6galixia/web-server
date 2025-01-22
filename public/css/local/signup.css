@@ -41,20 +41,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden; /* Prevent scroll during animations */
+  min-height: 100vh; /* Use min-height instead of height */
+  overflow: auto; /* Allow scrolling */
 }
 
 .container {
   display: flex;
   width: 90%;
+  height: auto;
   max-width: 1200px;
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
-  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow-y: auto; /* Allow vertical scrolling */
   animation: fadeIn 1.5s ease-in-out;
 }
 
@@ -174,25 +175,37 @@ a:hover {
 
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
+    flex-direction: column; /* Stack elements vertically */
+    width: 100%; /* Ensure container spans the full viewport width */
+    max-width: 100%; /* Remove max-width constraint */
+    margin: 0; /* Remove any unintended margins */
+    padding: 0; /* Remove any unintended padding */
+    box-sizing: border-box; /* Include padding and border in width/height */
   }
 
   .preview,
   .form-container {
-    width: 100%;
-    padding: 20px;
+    width: 100%; /* Make each section occupy full width */
+    height: 100%;
+    padding: 20px; /* Adjust padding for better spacing */
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
   }
+}
 
+@media (max-width: 480px) {
   .preview {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 15px; /* Further reduce padding for very small screens */
+    text-align: center; /* Center align content */
   }
 
   .form-container {
-    padding-top: 20px;
-    padding-bottom: 40px;
+    padding: 15px; /* Further reduce padding for very small screens */
+  }
+
+  form {
+    width: 100%; /* Ensure the form adjusts properly */
+    padding: 15px; /* Adjust padding */
+    margin: 0 auto; /* Center form horizontally */
   }
 }
 
