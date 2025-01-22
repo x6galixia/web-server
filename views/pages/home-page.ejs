@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/global/header.css" />
+    <link rel="stylesheet" href="../../css/local/home.css" />
     <title><%= title %></title>
 </head>
 <body>
     <%- include('../partials/header.ejs', { user: user }) %>
     <h1>Home</h1>
+
+    <% if (typeof error !== 'undefined') { %>
+        <div class="message error-message" id="errorMessage">
+          <%= error %>
+          <button class="close-btn" id="closeButton">&times;</button>
+        </div>
+    <% } %>
+
+    <script nonce="<%= nonce %>" src="../../js/local/home.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ function ensureAuthenticated(req, res, next) {
         return next();
     }
     // If the user is not authenticated, respond with a 401 Unauthorized status and a JSON message.
-    return res.redirect('/login?error=You are not authenticated, You must login first');
+    return res.redirect('/login?error=You are not authenticated. You must login first!');
 }
 
 // Middleware function to ensure that a user is NOT authenticated before accessing a route (e.g., login page).
