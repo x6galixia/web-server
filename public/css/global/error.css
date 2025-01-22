@@ -1,0 +1,38 @@
+.message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #c62828;
+    max-width: 90%;
+}
+
+.message.hide {
+    opacity: 0;
+}
+
+/* Style for the close button */
+.close-btn {
+    background: none;
+    border: none;
+    color: #c62828;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.close-btn:hover {
+    color: #8e0000;
+}

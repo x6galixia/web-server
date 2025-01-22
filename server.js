@@ -9,6 +9,7 @@ const winston = require("winston");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const DailyRotateFile = require("winston-daily-rotate-file");
+const crypto = require("crypto");
 const db = require("./src/config/db");
 const fs = require("fs");
 const session = require("express-session");
@@ -108,6 +109,16 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  const nonce = crypto.randomBytes(16).toString("base64");
+  res.locals.nonce = nonce;
+  res.setHeader(
+    "Content-Security-Policy",
+    `script-src 'self' 'nonce-${nonce}';`
+  );
+  next();
+});
 
 // Routes
 const routes = require("./src/routes/index");

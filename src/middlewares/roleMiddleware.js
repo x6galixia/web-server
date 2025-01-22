@@ -8,7 +8,7 @@ function ensureAdmin(req, res, next) {
         return next(); // Allow access to the next middleware or route handler.
     }
     // If the user is not authenticated or not an admin, deny access.
-    res.status(403).json({ message: 'Forbidden: Admin access required' });
+    return res.redirect('/home?error=You are not allowed to acces admin pages!');
 }
 
 // Middleware to ensure that the authenticated user has the 'user' role.
@@ -21,7 +21,7 @@ function ensureUser(req, res, next) {
         return next(); // Allow access to the next middleware or route handler.
     }
     // If the user is not authenticated or not a user, deny access.
-    res.status(403).json({ message: 'Forbidden: User access required' });
+    return res.redirect('/login?error=You are not authenticated. You must login first!');
 }
 
 // Middleware to allow access to users with either the 'admin' or 'user' role.
@@ -34,7 +34,7 @@ function ensureAdminOrUser(req, res, next) {
         return next(); // Allow access to the next middleware or route handler.
     }
     // If the user is not authenticated or does not have the required role, deny access.
-    res.status(403).json({ message: 'Forbidden: Access denied' });
+    return res.redirect('/login?error=You are not allowed to acces admin pages!');
 }
 
 // Export the middleware functions so they can be used in other parts of the application.
