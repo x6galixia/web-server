@@ -24,7 +24,11 @@ function ensureNotAuthenticated(req, res, next) {
     // Check if the user is authenticated using Passport's `isAuthenticated` method.
     if (req.isAuthenticated()) {
         // If the user is authenticated, redirect them to the home page (or another route).
-        return res.redirect('/home'); // Change the redirect path as needed
+        if (req.user.role === 'admin') {
+            return res.redirect('/dashboard');
+        } else {
+            return res.redirect('/home');
+        }
     }
     // If the user is not authenticated, call the `next()` function to proceed to the next middleware or route handler.
     next();
