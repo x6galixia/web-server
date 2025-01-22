@@ -9,12 +9,20 @@ body {
 /* Global font size adjustments */
 @media (max-width: 768px) {
   body {
-    font-size: 14px; /* Smaller font for tablets */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Smaller font for tablets */
   }
 }
 
 @media (max-width: 480px) {
   body {
     font-size: 12px; /* Smaller font for mobile devices */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 }

@@ -1,0 +1,33 @@
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Error message styling */
+  .error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+  }
+
+  /* Success message styling */
+  .success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+  }
+
+  /* Input error styling */
+  .error-input {
+    border-color: #c62828 !important;
+  }
+
+  /* Error text styling */
+  .error {
+    color: #c62828;
+    font-size: 12px;
+    margin-top: 5px;
+  }

@@ -16,6 +16,7 @@ const session = require("express-session");
 const passport = require("./src/config/passportConfig");
 const validateEnvVars = require("./src/utils/envValidator");
 const { NotFoundError } = require("./src/utils/errors");
+const { noCache } = require("./src/middlewares/authMiddleware");
 const notFoundMiddleware = require('./src/middlewares/errorMiddleware');
 
 require("dotenv").config();
@@ -103,7 +104,9 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "strict",
     },
   })
 );
@@ -123,7 +126,7 @@ app.use((req, res, next) => {
 
 // Routes
 const routes = require("./src/routes/index");
-app.use("/", routes);
+app.use("/", noCache, routes);
 
 // Redirect route (fixed parameters)
 app.get("/server", (req, res, next) => {

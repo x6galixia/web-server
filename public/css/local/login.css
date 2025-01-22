@@ -170,7 +170,7 @@ a:hover {
     flex-direction: column; /* Stack elements vertically */
     width: 100%; /* Ensure container spans the full viewport width */
     max-width: 100%; /* Remove max-width constraint */
-    margin: 0; /* Remove any unintended margins */
+    margin: 20px; /* Remove any unintended margins */
     padding: 0; /* Remove any unintended padding */
     box-sizing: border-box; /* Include padding and border in width/height */
   }
@@ -178,6 +178,7 @@ a:hover {
   .preview,
   .form-container {
     width: 100%; /* Make each section occupy full width */
+    height: 100%;
     padding: 20px; /* Adjust padding for better spacing */
     box-sizing: border-box; /* Ensure padding doesn’t affect width */
   }

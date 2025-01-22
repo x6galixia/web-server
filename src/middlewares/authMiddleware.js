@@ -34,9 +34,17 @@ function ensureNotAuthenticated(req, res, next) {
     next();
 }
 
+function noCache(req, res, next) {
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+    res.set("Pragma", "no-cache");
+    res.set("Expires", "0");
+    next();
+  }
+
 // Export the middleware functions so they can be used in other parts of the application,
 // such as protecting routes that require authentication or redirecting authenticated users away from login pages.
 module.exports = {
     ensureAuthenticated,
     ensureNotAuthenticated,
+    noCache
 };
